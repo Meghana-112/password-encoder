@@ -1,0 +1,263 @@
+
+#include<iostream>
+#include<cstdlib>
+#include <time.h>
+#include <fstream>
+using namespace std;
+void generatePassword();
+void viewPassword();
+main()
+{
+    srand (time(NULL));
+    for(;;)
+    {
+        int choice;
+        cout << "Enter 1 to generate new password || Enter 2 to view password || Enter 3 to exit \n";
+        cin >> choice;
+        if(choice == 1)
+        {
+            generatePassword();
+        }
+        else  
+        {
+            if(choice == 2)
+            {
+              viewPassword();
+            }
+            else
+            {
+                if(choice == 3)
+                {
+                    exit (EXIT_FAILURE);
+                }
+                else
+                    cout << "Please enter correct input";
+            }
+        }
+    
+    }
+    return 0;
+}
+
+void generatePassword(){
+    ofstream myfile;
+    int n, max=65, num, c,key,encKey;
+            char passChar,encPassChar;
+            cout << "Enter the length of the password \n";
+            cin >> n;
+            cout << "Enter a key value(between 0 to 9999) for encoding \n";
+            cin >> key;
+            key = key%65;
+            cout << "you must remember the value of the key for decoding purpose \n";
+            char arr[] = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z','1','2','3','4','5','6','7','8','9','0','@','#','$','*'};
+            char pass[n];
+            char encPass[n];
+            myfile.open ("password.txt");
+           for ( c = 0 ; c < n ; c++ )
+           {
+              num = rand()%max;
+              passChar = arr[num];
+              pass[c] = passChar;
+              encKey = key +num;
+              if(encKey > 65)
+              {
+                  encKey = encKey - 66;
+                  encPassChar = arr[encKey];
+                  encPass[c] = encPassChar;
+                  
+              }
+              else
+              {
+                  encPassChar = arr[encKey];
+                  encPass[c] = encPassChar;
+              }
+           } 
+           cout<< "generated password is \n" ;
+           for ( c = 0 ; c < n ; c++ )
+           {
+             cout<< pass[c] ;
+           }  
+           cout<< "\nencoded password is\n" ;
+           for ( c = 0 ; c < n ; c++ )
+           {
+              myfile << encPass[c];
+              cout<< encPass[c] ;
+           } 
+           cout << "\n";
+           myfile.close();
+           myfile.clear();
+}
+
+void viewPassword()
+{
+    int key,i=0,c,num,encKey;
+    char word,ch,encPass[100],pass[100],passChar;
+    char arr[] = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z','1','2','3','4','5','6','7','8','9','0','@','#','$','*'};
+    cout << "Enter value of key  for decoding \n";
+    cin >> key;
+    key = key%65;
+    fstream file; 
+    string  filename; 
+    filename = "password.txt"; 
+    file.open(filename.c_str()); 
+    while (file >> word) 
+    { 
+        encPass[i] = word;
+                    //cout << word << endl;
+        i++;
+    }
+    for(c=0;c<i;c++){
+    //cout << encPass[c];
+                    ch = encPass[c];
+                    if(ch == 'a')
+                        num = 0;
+                    if(ch == 'b')
+                        num = 1 ;
+                    if(ch == 'c')
+                        num = 2 ;
+                    if(ch == 'd')
+                        num = 3 ;
+                    if(ch == 'e')
+                        num = 4;
+                    if(ch == 'f')
+                        num = 5 ;
+                    if(ch == 'g')
+                        num = 6 ;
+                    if(ch == 'h')
+                        num = 7;
+                    if(ch == 'i')
+                        num = 8;
+                    if(ch == 'j')
+                        num = 9;
+                    if(ch == 'k')
+                        num = 10;
+                    if(ch == 'l')
+                        num = 11;
+                    if(ch == 'm')
+                        num = 12;
+                    if(ch == 'n')
+                        num = 13;
+                    if(ch == 'o')
+                        num = 14;
+                    if(ch == 'p')
+                        num = 15;
+                    if(ch == 'q')
+                        num = 16;
+                    if(ch == 'r')
+                        num = 17;
+                    if(ch == 's')
+                        num = 18;
+                    if(ch == 't')
+                        num = 19;
+                    if(ch == 'u')
+                        num = 20;
+                    if(ch == 'v')
+                        num = 21;
+                    if(ch == 'w')
+                        num = 22;
+                    if(ch == 'x')
+                        num = 23;
+                    if(ch == 'y')
+                        num = 24;
+                    if(ch == 'z')
+                        num = 25;
+                    if(ch == 'A')
+                        num = 26;
+                    if(ch == 'B')
+                        num = 27;
+                    if(ch == 'C')
+                        num = 28;
+                    if(ch == 'D')
+                        num = 29;
+                    if(ch == 'E')
+                        num = 30;
+                    if(ch == 'F')
+                        num = 31;
+                    if(ch == 'G')
+                        num = 32;
+                    if(ch == 'H')
+                        num = 33;
+                    if(ch == 'I')
+                        num = 34;
+                    if(ch == 'J')
+                        num = 35;
+                    if(ch == 'K')
+                        num = 36;
+                    if(ch == 'L')
+                        num = 37;
+                    if(ch == 'M')
+                        num = 38;
+                    if(ch == 'N')
+                        num = 39;
+                    if(ch == 'O')
+                        num = 40;
+                    if(ch == 'P')
+                        num = 41;
+                    if(ch == 'Q')
+                        num = 42;
+                    if(ch == 'R')
+                        num = 43;
+                    if(ch == 'S')
+                        num = 44;
+                    if(ch == 'T')
+                        num = 45;
+                    if(ch == 'U')
+                        num = 46;
+                    if(ch == 'V')
+                        num = 47;
+                    if(ch == 'W')
+                        num = 48;
+                    if(ch == 'X')
+                        num = 49;
+                    if(ch == 'Y')
+                        num = 50;
+                    if(ch == 'Z')
+                        num = 51;
+                    if(ch == '1')
+                        num = 52;
+                    if(ch == '2')
+                        num = 53;
+                    if(ch == '3')
+                        num = 54;
+                    if(ch == '4')
+                        num = 55;
+                    if(ch == '5')
+                        num = 56;
+                    if(ch == '6')
+                        num = 57;
+                    if(ch == '7')
+                        num = 58;
+                    if(ch == '8')
+                        num = 59;
+                    if(ch == '9')
+                        num = 60;
+                    if(ch == '0')
+                        num = 61;
+                    if(ch == '@')
+                        num = 62;
+                    if(ch == '#')
+                        num = 63;
+                    if(ch == '$')
+                        num = 64;
+                    if(ch == '*')
+                        num = 65;
+                        
+        encKey = num - key;
+        if(encKey < 0){
+            encKey = 66 + encKey;
+            passChar = arr[encKey];
+            pass[c] = passChar;
+        }
+        else{
+            passChar = arr[encKey];
+            pass[c] = passChar;
+        }
+    }
+    cout << "your password is : \n";
+    for( c=0;c<i;c++){
+        cout << pass[c];
+    }
+    cout << "\n";
+    file.close();
+    file.clear();
+}
